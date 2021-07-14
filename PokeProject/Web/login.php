@@ -6,19 +6,19 @@ $error = "";
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    $user_name = $_POST['user_name'];
+    $sign_in_name = $_POST['sign_in_name'];
     $user_password = $_POST['user_password'];
 
-    if(empty($user_name) && empty($user_password))
+    if(empty($sign_in_name) && empty($user_password))
     {
         $error = "Blogi prisijungimo duomenys: ";
     }
 
     if($error == "")
     {
-        $arr['user_name'] = $user_name;
+        $arr['sign_in_name'] = $sign_in_name;
         $arr['user_password'] = $user_password;
-        $query = 'select * from users where user_name = :user_name && user_password = :user_password limit 1';
+        $query = 'select * from users where sign_in_name = :sign_in_name && user_password = :user_password limit 1';
         $stmt = $connection->prepare($query);
         $check = $stmt->execute($arr);
             if($check)
@@ -55,7 +55,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         ?>
     </div>
     <div>
-        <input type="text" name="user_name" placeholder="Vartotojo Vardas" required> <br>
+        <input type="text" name="sign_in_name" placeholder="Vartotojo Vardas" required> <br>
         <input type="password" name="user_password" placeholder="Slaptažodis" required> <br>
         <input type="submit" value="Prisijungti">
         <a href="signup.php">Registruotis</a>
