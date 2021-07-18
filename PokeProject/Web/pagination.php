@@ -2,7 +2,7 @@
 
     require "../Config/autoload.php";
 
-$perPage = 1;
+$perPage = 3;
 $page = '';
 $output = '';
 
@@ -20,12 +20,12 @@ $stmt = $connection->prepare("select * from users order by user_id ASC LIMIT $st
 $stmt->execute();
 $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$output .= '<table><thead>
+$output .= '<table class="user-table"><thead>
             <tr>
-                <td>Vardas</td>
-                <td>Pavardė</td>
-                <td>Elektroninis paštas</td>
-                <td>Poke skaičius</td>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Elektroninis paštas</th>
+                <th>Poke skaičius</th>
             </tr>
             </thead>';
     foreach ($contacts as $contact){
@@ -35,7 +35,7 @@ $output .= '<table><thead>
                 <td>'.$contact['user_email'].'</td>
                 <td>'.$contact['user_poke_number'].'</td>
                 <td>
-                     <button class="poke" data-counter="poke" value="'.$contact['user_id'].'">Poke</button>
+                     <button class="poke" data-counter="poke" value="'.$contact['user_id'].'">Poke &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ></button>
                 </td>
             </tr>';
 }
@@ -49,8 +49,19 @@ $numPages = ceil($numRecords/$perPage);
 
 for($i=1;$i<=$numPages;$i++)
 {
-    $output .= "<span class = 'pagination_link' id='".$i."'>".$i."</span>";
+    $output .=
+        "
+    <span class = 'pagination_link' style=' background-color: lightgray;
+  border: none;
+  cursor: pointer;
+  color: black;
+  padding: 9px;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 60%;' id='".$i."'>".$i."</span>";
 }
 echo $output;
 ?>
-

@@ -19,27 +19,38 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="Style/PokeStyle.css" rel="stylesheet">
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <title>Pagrindinis langas</title>
 </head>
-<body>
-    <div>
-        <a href="logout.php">Atsijungti</a>
-        <a href="updateUser.php?id=<?=$_SESSION['user_id']?>">Icon</a>
+<header class="mdc-top-app-bar mdc-top-app-bar--short">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" style="font-size: 15px; white-space: nowrap;">BAKSNOTOJAS 2000</button>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page"><a href=""><img src="Images/hand-point-right-solid.png"></a></button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page"><a href="updateUser.php?id=<?=$_SESSION['user_id']?>"><img src="Images/user-circle-solid.png"></a></button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page"><a href="logout.php"><img src="Images/sign-out-alt-solid.png"></a></button>
+        </section>
     </div>
+</header>
+<body>
+    <div class="main" style="width: 800px; margin-left: 400px;">
     <h1>VARTOTOJAI</h1>
     <div>
-        <input type="text" name="search" id="search" placeholder="Ieškoti pagal vardą" onkeyup="search_data()">
+        <input type="text" name="search" style="width: 700px; height: 30px" id="search" placeholder="Ieškoti pagal vardą" onkeyup="search_data()">
     </div>
-    <div id="table-data">
-        <table>
+        <br>
+        <div id="table-data">
+        <table class="user-table">
             <thead>
             <tr>
-                <td>Vardas</td>
-                <td>Pavardė</td>
-                <td>Elektroninis paštas</td>
-                <td>Poke skaičius</td>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Elektroninis paštas</th>
+                <th>Poke skaičius</th>
             </tr>
             </thead>
             <tbody>
@@ -50,7 +61,7 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?=$contact['user_email']?></td>
                     <td><?=$contact['user_poke_number']?></td>
                     <td>
-                        <button class="poke" data-counter="poke" value="<?=$contact['user_id']?>">Poke</button>
+                        <button class="poke" data-counter="poke" value="<?=$contact['user_id']?>">Poke &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ></button>
                     </td>
                 </tr>
             <?php } ?>
@@ -58,29 +69,8 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
 </div>
-    <script>
 
-        $(document).ready(function ($) {
-            $(document).on('click', '.poke', function() {
-                var user_poke_number = $(this).data('poke');
-                var user_id = $(this).val();
-                jQuery('#poke').html('Loading...') ;
-                var ajax = jQuery.ajax({
-                    method : 'GET',
-                    url : 'pokingUser.php?id='+user_id,
-                    data : { 'user_poke_number' : '1', 'poke': user_poke_number,
-                        'user_id' : user_id
-                    }
-                }) ;
-                ajax.success(function(data){
-                    jQuery('#poke').html(data);
-                    console.log(user_id);
-                });
-                ajax.fail(function(data){
-                    alert('Klaida paspaudime');
-                });
-            });
-        });
+    <script>
 
         $(document).ready(function(){
             load_data();
@@ -104,7 +94,6 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 })
         function search_data(){
             var search = jQuery('#search').val();
-            if(search!=''){
                 jQuery.ajax({
                     type: 'post',
                     url:  'search.php',
@@ -113,8 +102,30 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         jQuery('#table-data').html(data);
                     }
                 });
-            }
+
         }
+        $(document).ready(function ($) {
+            $(document).on('click', '.poke', function() {
+                var user_poke_number = $(this).data('poke');
+                var user_id = $(this).val();
+                jQuery('#poke').html('Loading...') ;
+                var ajax = jQuery.ajax({
+                    method : 'GET',
+                    url : 'pokingUser.php?id='+user_id,
+                    data : { 'user_poke_number' : '1', 'poke': user_poke_number,
+                        'user_id' : user_id
+                    }
+                }) ;
+                ajax.success(function(data){
+                    jQuery('#poke').html(data);
+                    console.log(user_id);
+                });
+                ajax.fail(function(data){
+                    alert('Klaida paspaudime');
+                });
+            });
+        });
+
 
     </script>
 </body>

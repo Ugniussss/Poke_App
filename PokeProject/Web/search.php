@@ -9,12 +9,12 @@
     $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if(isset($contacts['0'])){
-        $output = '<table><thead>
+        $output = '<table class="user-table"><thead>
             <tr>
-                <td>Vardas</td>
-                <td>Pavardė</td>
-                <td>Elektroninis paštas</td>
-                <td>Poke skaičius</td>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Elektroninis paštas</th>
+                <th>Poke skaičius</th>
             </tr>
             </thead>';
         foreach ($contacts as $contact){
@@ -24,7 +24,7 @@
                 <td>'.$contact['user_email'].'</td>
                 <td>'.$contact['user_poke_number'].'</td>
                 <td>
-                     <button class="poke" data-counter="poke" value="'.$contact['user_id'].'">Poke</button>
+                     <button class="poke" data-counter="poke" value="'.$contact['user_id'].'">Poke &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ></button>
                 </td>
             </tr>';
         }

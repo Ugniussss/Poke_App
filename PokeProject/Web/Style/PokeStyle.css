@@ -1,0 +1,86 @@
+.main{
+    margin-left: 500px;
+    height: 550px;
+    width: 520px;
+    border-radius: 2px;
+    background: white;
+    display: flex;
+    margin-top: 120px;
+    flex-direction: column;
+    align-items: center;
+    border: 1px;
+    padding: 3px;
+    box-shadow: 0px 2px 0px 2px #888888;
+    font-family: Arial;
+}
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-bottom: 15px;
+    margin-left: 50px;
+    font-weight: bold;
+    color: gray;
+    font-size: 11px;
+    white-space: nowrap;
+}
+body{
+    background-color: lightgray;
+}
+#header-1{
+    margin-left: 150px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 25px;
+}
+#header-2{
+    margin-left: 120px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 25px;
+}
+#header-3{
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 25px;
+}
+.main button span{
+    text-transform: none;
+    color: white;
+}
+ header div{
+    background-color: dodgerblue;
+     box-shadow: 0px 1px 0px 1px #bbb2b4;
+     padding: 3px;
+     border: 1px;
+}
+ a, a:visited, a:hover, a:active{
+     color: white;
+     text-decoration: none;
+ }
+.user-table{
+    border-collapse: collapse;
+    width: 800px;
+}
+.user-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+.user-table td button{
+    background-color: dodgerblue;
+    text-align: right;
+    color: white;
+    width: 150px;
+    height: 40px;
+    border: none;
+}
+.user-table td button:hover{
+
+    background-color: blue;
+}
+.user-table td button:active{
+
+    background-color: blueviolet;
+}
