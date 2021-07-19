@@ -59,9 +59,9 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?=$contact['user_name']?></td>
                     <td><?=$contact['user_surname']?></td>
                     <td><?=$contact['user_email']?></td>
-                    <td><?=$contact['user_poke_number']?></td>
+                    <td class="user_poke_number"><?=$contact['user_poke_number']?></td>
                     <td>
-                        <button class="poke" data-counter="poke" value="<?=$contact['user_id']?>">Poke &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ></button>
+                        <button class="poke" value="<?=$contact['user_id']?>">Poke &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ></button>
                     </td>
                 </tr>
             <?php } ?>
@@ -102,30 +102,22 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         jQuery('#table-data').html(data);
                     }
                 });
-
         }
-        $(document).ready(function ($) {
+        $(document).ready(function () {
             $(document).on('click', '.poke', function() {
-                var user_poke_number = $(this).data('poke');
                 var user_id = $(this).val();
-                jQuery('#poke').html('Loading...') ;
                 var ajax = jQuery.ajax({
                     method : 'GET',
                     url : 'pokingUser.php?id='+user_id,
-                    data : { 'user_poke_number' : '1', 'poke': user_poke_number,
+                    data : { 'user_poke_number' : '1',
                         'user_id' : user_id
                     }
-                }) ;
+                })
                 ajax.success(function(data){
-                    jQuery('#poke').html(data);
-                    console.log(user_id);
-                });
-                ajax.fail(function(data){
-                    alert('Klaida paspaudime');
+                    jQuery('.user_poke_number').html(data);
                 });
             });
         });
-
 
     </script>
 </body>
