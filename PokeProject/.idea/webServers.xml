@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8e13e3e7-d90e-4849-b40e-e6398de8b256" name="localhost" url="http://localhost/PokeProject">
+        <fileTransfer mountedRoot="C:\xampp\htdocs\PokeProject" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

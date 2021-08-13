@@ -1,7 +1,8 @@
 <?php
 require "../Config/autoload.php";
 
-check_login($connection);
+//check_login($connection);
+/*
 $error = "";
 
 if(isset($_SESSION['user_id']))
@@ -135,3 +136,4 @@ else {
 </div>
 </body>
 </html>
+*/
